@@ -31,6 +31,9 @@ body{
 /* Header */
 header{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;
   padding-bottom:14px;margin-bottom:18px;border-bottom:2px solid var(--ink)}
+.brandmark{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-2);margin:0 0 3px;display:flex;align-items:baseline;gap:7px}
+.brandmark .tagline{font-weight:500;letter-spacing:.02em;text-transform:none;color:var(--muted);font-size:11px}
 .brand h1{font-family:var(--serif);font-size:25px;line-height:1.1;margin:0;letter-spacing:-.005em;font-weight:700}
 .brand h1 .em{color:var(--ink)}
 .brand .sub{font-size:12.5px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
@@ -140,6 +143,11 @@ a{color:var(--ink)}
 
 /* Timer controls */
 .timerwrap{display:flex;align-items:center;gap:6px}
+.contact-btn{font-family:var(--sans);font-size:12.5px;font-weight:700;color:#fff;background:#1877f2;
+  border:none;border-radius:999px;padding:7px 13px;cursor:pointer;text-decoration:none;
+  display:flex;align-items:center;gap:6px;white-space:nowrap;transition:background .15s}
+.contact-btn:hover{background:#1463d1}
+.contact-btn svg{width:14px;height:14px;flex:0 0 14px}
 .tbtn{font-family:var(--mono);font-size:12px;font-weight:700;border:1px solid var(--ink);
   background:var(--card);color:var(--ink);width:28px;height:28px;border-radius:8px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;padding:0;line-height:1;transition:background .15s}
@@ -190,6 +198,11 @@ mark{background:#fff1b8;color:inherit;border-radius:3px;padding:0 1px}
   .prompt{font-size:16.5px}
   .summary{grid-template-columns:repeat(3,1fr)}
   .brand h1{font-size:22px}
+  .brandmark{font-size:10px}
+  .brandmark .tagline{display:none}
+  header{flex-wrap:wrap}
+  .contact-btn span{display:none}
+  .contact-btn{padding:7px 9px}
 }
 :focus-visible{outline:3px solid var(--ink-2);outline-offset:2px;border-radius:6px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -199,13 +212,18 @@ mark{background:#fff1b8;color:inherit;border-radius:3px;padding:0 1px}
 <div id="wrap">
   <header>
     <div class="brand">
+      <div class="brandmark">Ballpoint with Kushal <span class="tagline">&middot; Self-study that actually works</span></div>
       <h1>Essential&nbsp;<span class="em">333</span> &middot; Vocabulary Drill</h1>
-      <div class="sub" id="brandsub">GRE / IBA / GMAT level</div>
+      <div class="sub" id="brandsub">GRE / IBA / GMAT level &middot; by Fahim Faisal Kushal</div>
     </div>
     <div class="timerwrap">
       <div class="timer" id="timer">00:00</div>
       <button class="tbtn" id="tStart" title="Start / pause timer">&#9654;</button>
       <button class="tbtn" id="tReset" title="Reset timer">&#8635;</button>
+      <a class="contact-btn" href="https://www.facebook.com/theffkushal/" target="_blank" rel="noopener noreferrer" title="Message Fahim Faisal Kushal on Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94"/></svg>
+        <span>Message me</span>
+      </a>
     </div>
   </header>
 
@@ -233,7 +251,7 @@ mark{background:#fff1b8;color:inherit;border-radius:3px;padding:0 1px}
     <div id="bankList"></div>
   </div>
 
-  <footer>Every answer locks instantly &middot; works fully offline &middot; built for the Essential 333 list</footer>
+  <footer>Every answer locks instantly &middot; works fully offline &middot; built for the Essential 333 list<br>&copy; Ballpoint with Kushal &middot; Fahim Faisal Kushal</footer>
 </div>
 
 <script>
@@ -472,7 +490,7 @@ function renderStats(){
     ['Incorrect',t.incorrect],['Accuracy',acc(t.correct,t.answered)+'%']
   ].map(p=>'<div class="stat"><div class="v">'+p[1]+'</div><div class="k">'+p[0]+'</div></div>').join('');
   document.getElementById('stats').innerHTML=html;
-  document.getElementById('brandsub').textContent='GRE / IBA / GMAT level \u00b7 '+WORDS.length+' words \u00b7 '+TOTAL_Q+' questions';
+  document.getElementById('brandsub').textContent='GRE / IBA / GMAT level \u00b7 '+WORDS.length+' words \u00b7 '+TOTAL_Q+' questions \u00b7 by Fahim Faisal Kushal';
 }
 function renderProgress(){
   const qs=BATCHES[S.b].questions;
